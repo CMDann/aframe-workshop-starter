@@ -2,13 +2,9 @@
 
 A ready-to-fork framework for running a **2-hour, hands-on WebXR scene-design workshop** using [A-Frame](https://aframe.io). Participants start from a working scene template, learn the primitives, and leave with a finished, shareable 3D scene they built themselves — viewable in any browser, no VR headset required (though it works in one if you have it). No prior coding, 3D, or game-dev experience is assumed, and nothing needs to be installed: A-Frame loads from a CDN and the whole scene is a single HTML file you can read top to bottom.
 
-<!--
-  TODO(pre-launch): replace this placeholder with a real screenshot or GIF of the
-  example scene. It should be the first thing a visitor sees working. A short GIF
-  of the camera panning around a finished participant scene is ideal.
-  This cannot be captured until Phase 6 (example-scene/) is built.
--->
-> **[ Screenshot placeholder — a real capture of the example scene goes here before launch. ]**
+![PIZZA.EXE — NETDEFENDER PRO main menu concept art](site/img/hero-netdefender.jpg)
+
+<sub>Art direction for the workshop asset kit: **PIZZA.EXE**, a military cyberspace simulator wearing a cheap pizza costume. See [asset-kit/](asset-kit/).</sub>
 
 ---
 

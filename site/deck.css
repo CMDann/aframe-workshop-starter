@@ -127,3 +127,23 @@
 .reveal .fragment.highlight-current-warm.current-fragment { color: var(--deck-warm); }
 
 .reveal .slide-number { background: transparent; color: var(--deck-muted); font-family: var(--mono); }
+
+/* ---------- PIZZA.EXE art slides ---------- */
+
+/* Full-bleed background slide. Reveal needs the section to carry the image. */
+.reveal section[data-background-image] h2,
+.reveal section[data-background-image] p { text-shadow: 0 2px 12px rgba(0,0,0,0.85); }
+
+.art-full {
+  max-height: 60vh;
+  width: auto;
+  border: 1px solid var(--deck-border);
+  border-radius: 10px;
+  display: block;
+  margin: 0 auto;
+}
+.reveal .caption {
+  font-size: 0.42em;
+  color: var(--deck-muted);
+  margin-top: 0.5em;
+}

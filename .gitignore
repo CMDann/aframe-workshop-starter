@@ -16,3 +16,6 @@ node_modules/
 
 # Local preview config, not part of the published framework
 .claude/
+
+# 67MB zip; identical to the extracted asset-kit/concept/ folder that IS committed
+pizza_exe_all_concept_art_images.zip

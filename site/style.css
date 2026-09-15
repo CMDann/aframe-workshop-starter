@@ -200,3 +200,48 @@ footer a { color: var(--muted); }
   .hero { padding: 3rem 0 2.5rem; }
   section { padding: 2.5rem 0; }
 }
+
+/* ==========================================================================
+   PIZZA.EXE art-direction visuals
+   ========================================================================== */
+
+/* Full-bleed environment strip used as a section divider */
+.strip {
+  height: 190px;
+  background-image: url("img/strip-district01.jpg");
+  background-size: cover;
+  background-position: center;
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+}
+
+.hero-art {
+  margin-top: 2.5rem;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  overflow: hidden;
+  line-height: 0;
+  box-shadow: 0 12px 32px rgb(0 0 0 / 0.18);
+}
+.hero-art img { width: 100%; height: auto; }
+
+/* Gallery of concept sheets */
+.art-grid {
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: repeat(auto-fit, minmax(17rem, 1fr));
+}
+.art-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  overflow: hidden;
+}
+.art-card img { width: 100%; height: auto; display: block; }
+.art-card figcaption {
+  padding: 0.75rem 1rem;
+  font-size: 0.88rem;
+  color: var(--muted);
+}
+.art-card figcaption b { color: var(--text); display: block; margin-bottom: 0.15rem; }
+figure { margin: 0; }
