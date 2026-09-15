@@ -1,0 +1,129 @@
+/* ==========================================================================
+   Facilitator deck theme.
+
+   Overrides reveal.js's base theme so the deck matches the landing page
+   (site/style.css). Loaded AFTER reveal's theme CSS so these win.
+
+   The deck is always dark — it's projected in a room, not read on a phone,
+   so it doesn't follow the viewer's colour scheme the way the site does.
+   ========================================================================== */
+
+:root {
+  --deck-bg:      #0e1014;
+  --deck-surface: #171a20;
+  --deck-text:    #e8e9ec;
+  --deck-muted:   #9aa0ab;
+  --deck-accent:  #8b9dff;
+  --deck-warm:    #fbbf24;
+  --deck-border:  #2a2f39;
+  --mono: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+}
+
+.reveal-viewport { background: var(--deck-bg); }
+
+.reveal {
+  font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  color: var(--deck-text);
+}
+
+.reveal h1, .reveal h2, .reveal h3 {
+  color: var(--deck-text);
+  text-transform: none;      /* reveal's default uppercase is hard to read */
+  letter-spacing: -0.02em;
+  font-weight: 700;
+  text-shadow: none;
+}
+.reveal h1 { font-size: 2.4em; }
+.reveal h2 { font-size: 1.6em; margin-bottom: 0.5em; }
+.reveal h3 { font-size: 1.15em; color: var(--deck-muted); font-weight: 600; }
+
+.reveal p, .reveal li { line-height: 1.5; }
+.reveal a { color: var(--deck-accent); }
+
+/* Timing chip, top-right of a slide — tells the facilitator where they are */
+.clock {
+  position: absolute;
+  top: -1.2em; right: 0;
+  font-size: 0.4em;
+  font-family: var(--mono);
+  color: var(--deck-muted);
+  letter-spacing: 0.08em;
+}
+
+.eyebrow {
+  font-size: 0.45em;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--deck-accent);
+  font-weight: 700;
+  margin-bottom: 0.6em;
+}
+
+.big {
+  font-size: 1.5em;
+  font-weight: 700;
+  line-height: 1.25;
+}
+
+.muted { color: var(--deck-muted); }
+.warm  { color: var(--deck-warm); }
+
+.reveal pre {
+  width: 100%;
+  box-shadow: none;
+  border: 1px solid var(--deck-border);
+  border-radius: 10px;
+  font-size: 0.5em;
+  margin: 0.6em 0;
+}
+.reveal pre code {
+  border-radius: 10px;
+  padding: 1em 1.2em;
+  max-height: 460px;
+  background: #12151a;
+}
+.reveal code:not(pre code) {
+  font-family: var(--mono);
+  background: var(--deck-surface);
+  border: 1px solid var(--deck-border);
+  border-radius: 4px;
+  padding: 0.08em 0.3em;
+  font-size: 0.9em;
+}
+
+/* Source link shown under a code slide */
+.srcref {
+  font-family: var(--mono);
+  font-size: 0.38em;
+  color: var(--deck-muted);
+  margin-top: 0.4em;
+}
+.srcref a { color: var(--deck-accent); }
+
+/* Card row, e.g. the 4 Ds */
+.cards { display: flex; gap: 0.7em; justify-content: center; flex-wrap: wrap; }
+.cards .c {
+  flex: 1 1 8em;
+  background: var(--deck-surface);
+  border: 1px solid var(--deck-border);
+  border-radius: 10px;
+  padding: 0.8em 0.9em;
+  text-align: left;
+}
+.cards .c b { display: block; color: var(--deck-accent); margin-bottom: 0.25em; font-size: 0.95em; }
+.cards .c span { font-size: 0.62em; color: var(--deck-muted); line-height: 1.45; display: block; }
+
+/* Prompt slide — one instruction, held on screen while people think */
+.prompt {
+  background: var(--deck-surface);
+  border-left: 4px solid var(--deck-warm);
+  border-radius: 0 10px 10px 0;
+  padding: 0.8em 1.1em;
+  text-align: left;
+  font-size: 0.85em;
+}
+
+.reveal ul.tight li { margin-bottom: 0.35em; }
+.reveal .fragment.highlight-current-warm.current-fragment { color: var(--deck-warm); }
+
+.reveal .slide-number { background: transparent; color: var(--deck-muted); font-family: var(--mono); }

@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Spatial Storytelling — Facilitator Deck</title>
+
+<!--
+  Facilitator slide deck for the 2-hour workshop.
+
+  Structure follows the run of show in docs/facilitator-guide.md. If you
+  change the timings there, change them here too — the clock chips in the
+  top-right of each slide are the facilitator's main orientation cue.
+
+  Press S for speaker view (notes + timer). Press ? for all shortcuts.
+
+  reveal.js is pinned to 5.1.0 rather than the newer 6.x on purpose: 6.x
+  does not publish its plugins to cdnjs, and this deck needs both speaker
+  notes and syntax highlighting.
+-->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/5.1.0/reveal.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/5.1.0/theme/black.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/5.1.0/plugin/highlight/monokai.css">
+<link rel="stylesheet" href="../site/deck.css">
+</head>
+<body>
+<div class="reveal"><div class="slides">
+
+<!-- ============================ HOOK — 0:00 ============================ -->
+
+<section>
+  <p class="eyebrow">A 2-hour hands-on workshop</p>
+  <h1>Spatial Storytelling</h1>
+  <h3>Designing your first WebXR scene</h3>
+  <aside class="notes">
+    Don't start with tooling. Start with the promise: in two hours everyone
+    in this room will have a 3D scene of their own, live on the internet, that
+    they can send to someone. No installs, no prior experience.
+  </aside>
+</section>
+
+<section>
+  <span class="clock">0:00 — 0:10</span>
+  <h2>By the end of today</h2>
+  <p class="big">You'll have a 3D world.<br>Live. On a link you can share.</p>
+  <p class="muted">Viewable in any browser. In VR too, if there's a headset around.</p>
+  <aside class="notes">
+    Say the deliverable out loud, plainly. Most of the room assumes 3D means
+    Unity, a degree, and six months. Undercutting that assumption early is the
+    single most useful thing you do in the first ten minutes.
+  </aside>
+</section>
+
+<section>
+  <span class="clock">0:00 — 0:10</span>
+  <h2>Here's one</h2>
+  <p><a href="../example-scene/" target="_blank">Open the example scene →</a></p>
+  <p class="muted">Then: view source, live, on the projector.</p>
+  <aside class="notes">
+    THE HOOK. Open the scene, fly around for fifteen seconds, then View Source
+    right in front of them and scroll it slowly.
+
+    Say it explicitly: "that's the whole thing. It's HTML. You already know how
+    to read this."
+
+    If example-scene isn't built yet, use ../starter-template/ instead — the
+    point survives either way.
+  </aside>
+</section>
+
+<section>
+  <span class="clock">0:00 — 0:10</span>
+  <h2>That was about thirty lines</h2>
+  <pre><code class="language-html" data-trim data-noescape>&lt;a-scene&gt;
+  &lt;a-sky color="#ECECEC"&gt;&lt;/a-sky&gt;
+  &lt;a-light type="ambient" intensity="0.4"&gt;&lt;/a-light&gt;
+  &lt;a-plane rotation="-90 0 0" width="30" height="30"&gt;&lt;/a-plane&gt;
+  &lt;a-box position="-1 0.5 -3" color="#4CC3D9"&gt;&lt;/a-box&gt;
+&lt;/a-scene&gt;</code></pre>
+  <p class="srcref">
+    Full file:
+    <a href="https://github.com/CMDann/aframe-workshop-starter/blob/main/starter-template/index.html">starter-template/index.html</a>
+  </p>
+  <aside class="notes">
+    Read the tags aloud as English: "a scene, containing a sky, a light, a
+    plane, and a box." That sentence IS the code. This is the moment the
+    room relaxes.
+  </aside>
+</section>
+
+<!-- ============================ THE 4 Ds ============================ -->
+
+<section>
+  <h2>How we'll work</h2>
+  <div class="cards">
+    <div class="c"><b>Direction</b><span>Decide the mood before writing anything.</span></div>
+    <div class="c"><b>Description</b><span>Write tags that describe the scene.</span></div>
+    <div class="c"><b>Discernment</b><span>Choose assets that serve the mood.</span></div>
+    <div class="c"><b>Delegation</b><span>Let A-Frame handle the hard parts.</span></div>
+  </div>
+  <aside class="notes">
+    There's a script for this in the facilitator guide you can use verbatim.
+    The short version: four moves, in order. Intent first, then description,
+    then judgment, and the framework carries the complexity throughout.
+  </aside>
+</section>
+
+<section>
+  <p class="eyebrow">Direction</p>
+  <h2>Intent comes first</h2>
+  <p class="big muted">What does this space <em>feel</em> like?</p>
+  <p>Not "what objects will I place." That comes after.</p>
+  <aside class="notes">
+    The most common failure mode in a short build session is opening the editor
+    with no idea what you're making and filling the time with random props.
+    Deciding the mood first is what prevents that.
+  </aside>
+</section>
+
+<section>
+  <p class="eyebrow">Description</p>
+  <h2>Describing the scene <em>is</em> the code</h2>
+  <p class="muted">This is not a metaphor. Each tag is a thing in the room.</p>
+  <pre><code class="language-html" data-trim>&lt;a-box&gt;     is a box
+&lt;a-sphere&gt;  is a sphere
+&lt;a-sky&gt;     is the sky around everything
+&lt;a-light&gt;   is a light source</code></pre>
+  <aside class="notes">
+    Worth dwelling on. In most 3D tools you build a scene by clicking through
+    an interface; here you write down what's there. That maps onto how people
+    already describe spaces in language.
+  </aside>
+</section>
+
+<section>
+  <p class="eyebrow">Discernment</p>
+  <h2>Choosing, not collecting</h2>
+  <ul class="tight">
+    <li>A curated asset kit is ready to go</li>
+    <li>You can source your own — <span class="warm">10 minutes maximum</span></li>
+    <li>Free-to-use only: CC0, or CC-BY with credit</li>
+  </ul>
+  <aside class="notes">
+    Enforce the cap out loud, now, before build time. Asset hunting is the
+    single biggest time sink in the session and it will eat the whole hour if
+    you let it. The skill being practised is judgment, not search.
+  </aside>
+</section>
+
+<section>
+  <p class="eyebrow">Delegation</p>
+  <h2>What you never have to write</h2>
+  <ul class="tight">
+    <li>The camera and head tracking</li>
+    <li>Mouse-look and keyboard movement</li>
+    <li>Lighting maths and rendering</li>
+    <li>The entire WebXR headset handshake</li>
+  </ul>
+  <p class="muted">Naming a component is enough.</p>
+  <aside class="notes">
+    Point at look-controls and wasd-controls in the file. Each of those would
+    be hundreds of lines by hand. Writing the name is the whole integration.
+    That's what frees the hour up for composition.
+  </aside>
+</section>
+
+<!-- ============================ TOUR — 0:10 ============================ -->
+
+<section>
+  <span class="clock">0:10 — 0:25</span>
+  <h2>Let's open it together</h2>
+  <p><a href="https://glitch.com/edit/#!/import/github/CMDann/aframe-workshop-starter" target="_blank">Import on Glitch →</a></p>
+  <p class="muted">Then Preview, then <code>/starter-template/</code></p>
+  <aside class="notes">
+    Everyone forks now. Wait for the room — don't move on with half of them
+    still loading. Have the QR code or short link visible.
+
+    If the venue network blocks Glitch, this is where you switch to the local
+    fallback. You tested that yesterday.
+  </aside>
+</section>
+
+<section>
+  <span class="clock">0:10 — 0:25</span>
+  <h2>Four attributes do most of the work</h2>
+  <pre><code class="language-html" data-trim>position="X Y Z"    where it is        (metres)
+rotation="X Y Z"    how it's turned    (degrees)
+scale="X Y Z"       how big            (1 = normal)
+color="#RRGGBB"     what colour</code></pre>
+  <p class="srcref">
+    In context:
+    <a href="https://github.com/CMDann/aframe-workshop-starter/blob/main/starter-template/index.html#L150-L195">the objects section →</a>
+  </p>
+  <aside class="notes">
+    Live-edit one colour value on the projector right now and let them watch it
+    reload. That single moment does more than any explanation — it shows the
+    loop is instant and nothing can be permanently broken.
+  </aside>
+</section>
+
+<section>
+  <span class="clock">0:10 — 0:25</span>
+  <h2 class="warm">Negative Z is forward</h2>
+  <p class="big">You start at <code>0 0 0</code> looking down &minus;Z.</p>
+  <p class="muted">Anything you want to see goes at a negative Z.<br>
+     Everyone trips on this once. Better now than at minute fifty.</p>
+  <aside class="notes">
+    Call this out deliberately. When someone says "I added a box and nothing
+    happened," this is the reason nine times out of ten — it's behind them.
+    Teaching them to turn around is the fix.
+  </aside>
+</section>
+
+<section>
+  <span class="clock">0:10 — 0:25</span>
+  <h2>Two lights, doing two jobs</h2>
+  <pre><code class="language-html" data-trim>&lt;a-light type="ambient"     intensity="0.4"&gt;&lt;/a-light&gt;
+&lt;a-light type="directional" intensity="0.8" position="-1 2 1"&gt;&lt;/a-light&gt;</code></pre>
+  <p class="muted">Ambient stops anything going black. Directional makes things look solid.</p>
+  <p class="srcref">
+    <a href="https://github.com/CMDann/aframe-workshop-starter/blob/main/starter-template/index.html#L128-L129">starter-template/index.html#L128-L129 →</a>
+  </p>
+  <aside class="notes">
+    Best live demo in the deck: set the directional intensity to 0 and reload.
+    The cube flattens into a hexagon in front of them. Then put it back.
+
+    Also warn them: the moment you add your own light, A-Frame's default
+    lighting switches off. That surprises people who add one light and find
+    their scene got darker.
+  </aside>
+</section>
+
+<section>
+  <span class="clock">0:10 — 0:25</span>
+  <h2>Bringing in a model</h2>
+  <pre><code class="language-html" data-trim>&lt;a-entity
+  gltf-model="../asset-kit/models/lantern.glb"
+  position="0 0 -4"
+  scale="1 1 1"&gt;&lt;/a-entity&gt;</code></pre>
+  <p class="muted">Models are almost never the size you expect. Fix <code>scale</code> first.</p>
+  <aside class="notes">
+    Set expectations here: a model appearing enormous or invisibly tiny is
+    normal, not a mistake. Scale is the first thing to reach for, not a sign
+    something is broken.
+  </aside>
+</section>
+
+<!-- ============================ DIRECTION — 0:25 ============================ -->
+
+<section>
+  <span class="clock">0:25 — 0:35</span>
+  <p class="eyebrow">Direction</p>
+  <h2>Five minutes. No keyboards.</h2>
+  <div class="prompt">
+    <p>Pick a mood, a theme, or a one-sentence concept for your scene.</p>
+    <p class="muted">Somewhere abandoned. A place that's too quiet. A memory of a room.
+       Underwater. The last shop open at 3am.</p>
+  </div>
+  <aside class="notes">
+    Hold this slide up for the full five minutes. Quiet, individual, no typing.
+
+    Don't let it run long — you want a decision, not a polished concept. If
+    someone is stuck at four minutes, tell them to pick the worst idea on the
+    list and start; it will change once they build anyway.
+  </aside>
+</section>
+
+<!-- ============================ BUILD — 0:35 ============================ -->
+
+<section>
+  <span class="clock">0:35 — 1:35</span>
+  <h2>Build time</h2>
+  <p class="big">One hour.</p>
+  <p class="muted">Your Direction drives every decision from here.</p>
+  <aside class="notes">
+    This is the bulk of the session and your job changes: stop presenting and
+    start circulating. Most of the real teaching happens one-on-one in this
+    hour.
+  </aside>
+</section>
+
+<section>
+  <span class="clock">0:35 — 1:35</span>
+  <h2>What a finished scene needs</h2>
+  <ul class="tight">
+    <li>A sky or skybox</li>
+    <li>At least one light, set deliberately</li>
+    <li>Two or three objects placed with intention</li>
+    <li>It loads and enters VR from your shared link</li>
+  </ul>
+  <p class="muted">That's the floor, not the ceiling.</p>
+  <aside class="notes">
+    Leave this one up on the projector during build time if you have a second
+    screen. It answers "am I done?" without anyone having to ask.
+  </aside>
+</section>
+
+<section>
+  <span class="clock">0:35 — 1:35</span>
+  <h2>If you get stuck</h2>
+  <ul class="tight">
+    <li><b>Nothing renders?</b> Check the console, and the closing <code>&lt;/a-scene&gt;</code></li>
+    <li><b>No VR button?</b> You're not on HTTPS or localhost</li>
+    <li><b>Model won't load?</b> Needs to be a real <code>.glb</code> file, not a viewer page</li>
+    <li><b>Can't find the object?</b> It's probably behind you</li>
+  </ul>
+  <aside class="notes">
+    These four cover nearly every question you'll get. Full list with fixes is
+    in the facilitator guide under "common failure points."
+
+    Running short on time? Steer people to the minimum viable scene: primitives
+    only, no custom models. Still complete, still shareable.
+  </aside>
+</section>
+
+<!-- ============================ PEER TEST — 1:35 ============================ -->
+
+<section>
+  <span class="clock">1:35 — 1:50</span>
+  <h2>Swap links</h2>
+  <p>Everyone already has a live URL. Go and stand in two or three other people's worlds.</p>
+  <aside class="notes">
+    This block matters more than it looks. Seeing someone else's scene in your
+    own browser is what makes it land that they built something real and
+    public, not a classroom exercise.
+
+    If a headset is in the room, this is when it goes round.
+  </aside>
+</section>
+
+<section>
+  <span class="clock">1:50 — 2:00</span>
+  <h2>One thing you'd add with more time</h2>
+  <p class="muted">Go round the room. One sentence each.</p>
+  <aside class="notes">
+    Ends the session on intent rather than on what didn't get finished — which
+    is the right note, because everyone runs out of time.
+
+    Two questions worth collecting: what would you add, and where did you get
+    stuck? The second one is what improves the next run of this workshop.
+  </aside>
+</section>
+
+<section>
+  <h2>Keep going</h2>
+  <p class="muted">Your Glitch project stays live and editable. Publish it permanently
+     with GitHub Pages whenever you want.</p>
+  <p class="srcref">
+    <a href="https://github.com/CMDann/aframe-workshop-starter">github.com/CMDann/aframe-workshop-starter</a>
+  </p>
+  <aside class="notes">
+    Point at the docs folder — the A-Frame guide goes well past what today
+    covered, for anyone who wants to keep building.
+  </aside>
+</section>
+
+</div></div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/5.1.0/reveal.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/5.1.0/plugin/notes/notes.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/5.1.0/plugin/highlight/highlight.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/5.1.0/plugin/markdown/markdown.js"></script>
+<script>
+  Reveal.initialize({
+    hash: true,
+    slideNumber: 'c/t',
+    transition: 'fade',
+    controls: true,
+    progress: true,
+    // Presenter view needs this to estimate pacing: 120 minutes across the deck.
+    defaultTiming: 340,
+    totalTime: 7200,
+    plugins: [ RevealNotes, RevealHighlight, RevealMarkdown ]
+  });
+</script>
+</body>
+</html>
