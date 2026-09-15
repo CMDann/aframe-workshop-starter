@@ -1,0 +1,15 @@
+# macOS / exFAT volume artifacts
+.DS_Store
+._*
+.Spotlight-V100
+.Trashes
+
+# Editors
+.vscode/
+.idea/
+*.swp
+
+# This project has no build step, but contributors may still run tooling locally.
+node_modules/
+*.log
+.env

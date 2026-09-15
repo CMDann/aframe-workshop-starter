@@ -1,0 +1,66 @@
+# Spatial Storytelling: Designing Your First WebXR Scene
+
+A ready-to-fork framework for running a **2-hour, hands-on WebXR scene-design workshop** using [A-Frame](https://aframe.io). Participants start from a working scene template, learn the primitives, and leave with a finished, shareable 3D scene they built themselves — viewable in any browser, no VR headset required (though it works in one if you have it). No prior coding, 3D, or game-dev experience is assumed, and nothing needs to be installed: A-Frame loads from a CDN and the whole scene is a single HTML file you can read top to bottom.
+
+<!--
+  TODO(pre-launch): replace this placeholder with a real screenshot or GIF of the
+  example scene. It should be the first thing a visitor sees working. A short GIF
+  of the camera panning around a finished participant scene is ideal.
+  This cannot be captured until Phase 6 (example-scene/) is built.
+-->
+> **[ Screenshot placeholder — a real capture of the example scene goes here before launch. ]**
+
+---
+
+## Quick start
+
+**Try the starter scene right now:**
+
+1. Open <https://glitch.com/edit/#!/import/github/CMDann/aframe-workshop-starter> — this imports this repo into a fresh Glitch project.
+2. Hit **Preview**, then navigate to `/starter-template/` on the preview URL.
+3. You have a live, HTTPS-hosted WebXR scene. Edit `starter-template/index.html` and the preview reloads as you type.
+
+Glitch is the reference target because it gives you **free HTTPS**, and HTTPS (or `localhost`) is what makes the VR-mode button appear at all — it's a WebXR requirement, not an incidental choice.
+
+**No Glitch?** See [docs/deployment.md](docs/deployment.md) for CodeSandbox, GitHub Pages, and a local-server fallback for venues with restrictive networks.
+
+**Running this workshop?** Start with [docs/facilitator-guide.md](docs/facilitator-guide.md).
+
+---
+
+## Built around the 4 Ds
+
+The session is structured around four moments, in order, rather than as a feature-by-feature software tutorial:
+
+- **Direction** — participants pick a mood, theme, or concept *before* writing anything. Intent comes first.
+- **Description** — writing the A-Frame entity tags that describe the scene. This maps unusually literally onto A-Frame's declarative syntax: describing a scene *is* the code.
+- **Discernment** — choosing assets deliberately, from the curated kit or self-sourced under a time cap. The skill is judgment about what serves the mood, not how much you can find.
+- **Delegation** — A-Frame's defaults (camera rig, look-controls, cursor, lighting) handle the underlying complexity, so participants never touch raw WebXR API code and spend their time on composition instead.
+
+---
+
+## What's in this repo
+
+| Path | What it is |
+|---|---|
+| [starter-template/](starter-template/) | The fork-ready A-Frame scene participants build from. Heavily commented — it doubles as the in-session reference. |
+| [example-scene/](example-scene/) | A finished scene built from the starter template, used as the opening demo. |
+| [asset-kit/](asset-kit/) | Curated CC0 models and skyboxes, with a machine-readable manifest and full license attribution. |
+| [docs/overview.md](docs/overview.md) | What the workshop is, who it's for, and the learning outcomes. |
+| [docs/facilitator-guide.md](docs/facilitator-guide.md) | Run of show with clock times, pre-session checklist, common failure points and fixes. |
+| [docs/assignment.md](docs/assignment.md) | The student-facing task brief, requirements, and asset-sourcing rules. |
+| [docs/student-cheatsheet.md](docs/student-cheatsheet.md) | One-page, print-friendly A-Frame quick reference. |
+| [docs/deployment.md](docs/deployment.md) | Glitch / CodeSandbox / GitHub Pages / local fallback instructions. |
+| [docs/decisions.md](docs/decisions.md) | Judgment calls made while building this, and open items. |
+
+## Running this yourself
+
+This is designed to be picked up and run by *any* facilitator — that's the point of open-sourcing it. Nothing here is tied to a particular institution. Fork it, swap the asset kit for one that suits your group, and adapt the timings.
+
+## Contributing
+
+See [CONTRIBUTING.md](CONTRIBUTING.md). The short version: no build step, no npm install, single-file scenes, and every bundled asset needs a verifiable CC0 or CC-BY license.
+
+## License
+
+[MIT](LICENSE) for the code and documentation. Third-party assets in `asset-kit/` are licensed separately by their creators — see [asset-kit/ATTRIBUTION.md](asset-kit/ATTRIBUTION.md).
