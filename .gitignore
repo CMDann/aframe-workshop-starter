@@ -19,3 +19,7 @@ node_modules/
 
 # 67MB zip; identical to the extracted asset-kit/concept/ folder that IS committed
 pizza_exe_all_concept_art_images.zip
+
+# Blender auto-save backups
+*.blend1
+*.blend2

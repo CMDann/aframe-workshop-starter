@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Asset Preview — PIZZA.EXE kit</title>
+
+<!--
+  Asset inspection harness.
+
+  Loads any model from models/ by query string:
+
+      preview.html?model=PIZZA_EXE_CRT_diorama.glb
+
+  Shows it on a 1-metre grid next to a 1.8 m human-height reference, with a
+  readout of its real dimensions. Wrong scale is the most common glTF export
+  fault (see docs/aframe/05-models.md), and it is very hard to eyeball without
+  something known-sized standing beside it.
+
+  Optional query params:
+      &scale=0.5      multiply the model
+      &spin=0         turn the turntable off
+      &bg=222233      background colour
+-->
+
+<script src="https://aframe.io/releases/1.8.0/aframe.min.js"></script>
+<style>
+  body { margin: 0; font-family: ui-sans-serif, system-ui, sans-serif; }
+
+  #hud {
+    position: fixed; top: 0; left: 0; z-index: 10;
+    margin: 12px;
+    padding: 12px 14px;
+    background: rgba(12,14,18,0.86);
+    color: #e8e9ec;
+    border: 1px solid #2a2f39;
+    border-radius: 10px;
+    font-size: 13px;
+    line-height: 1.55;
+    max-width: 22rem;
+  }
+  #hud h1 { margin: 0 0 6px; font-size: 14px; letter-spacing: -0.01em; }
+  #hud dl { margin: 0; display: grid; grid-template-columns: auto 1fr; gap: 2px 10px; }
+  #hud dt { color: #9aa0ab; }
+  #hud dd { margin: 0; font-family: ui-monospace, Menlo, monospace; }
+  #hud .warn { color: #fbbf24; }
+  #hud .err  { color: #ff6b6b; }
+  #hud code { color: #8b9dff; }
+</style>
+</head>
+<body>
+
+<div id="hud">
+  <h1 id="title">Loading…</h1>
+  <dl id="stats"></dl>
+</div>
+
+<a-scene renderer="colorManagement: true; antialias: true" background="color: #222233">
+
+  <!-- Even, neutral lighting — this is an inspection rig, not a beauty shot.
+       The goal is to read the form and catch problems, not to flatter it. -->
+  <a-light type="ambient" color="#ffffff" intensity="0.55"></a-light>
+  <a-light type="directional" color="#ffffff" intensity="0.9" position="-2 4 3"></a-light>
+  <a-light type="directional" color="#aab6ff" intensity="0.35" position="3 2 -2"></a-light>
+
+  <!-- 1 metre grid. Each square is exactly 1 m, so scale is readable at a glance. -->
+  <a-entity id="grid"></a-entity>
+
+  <!-- 1.8 m human reference, same trick the concept sheets use -->
+  <a-entity id="human" position="-1.6 0 0.9">
+    <a-cylinder height="1.8" radius="0.17" position="0 0.9 0"
+                color="#3d5afe" opacity="0.32" material="transparent: true"></a-cylinder>
+    <a-text value="1.8 m" color="#8b9dff" align="center"
+            position="0 1.95 0" width="4"></a-text>
+  </a-entity>
+
+  <!-- The model under inspection -->
+  <a-entity id="turntable" position="0 0 0">
+    <a-entity id="model"></a-entity>
+  </a-entity>
+
+  <a-entity id="rig" position="0 1.5 4.5">
+    <a-entity camera look-controls wasd-controls="acceleration: 40">
+      <a-cursor color="#ffffff"></a-cursor>
+    </a-entity>
+  </a-entity>
+</a-scene>
+
+<script>
+  const q = new URLSearchParams(location.search);
+  const file  = q.get('model');
+  const scale = parseFloat(q.get('scale') || '1');
+  const spin  = q.get('spin') !== '0';
+  const bg    = q.get('bg');
+
+  const title = document.getElementById('title');
+  const stats = document.getElementById('stats');
+
+  function row(k, v, cls) {
+    stats.insertAdjacentHTML('beforeend',
+      `<dt>${k}</dt><dd class="${cls || ''}">${v}</dd>`);
+  }
+
+  if (bg) document.querySelector('a-scene').setAttribute('background', 'color: #' + bg);
+
+  // Build the 1 m grid in code rather than hand-writing 40 lines of tags.
+  (function buildGrid() {
+    const g = document.getElementById('grid');
+    const N = 6;  // metres either side of origin
+    for (let i = -N; i <= N; i++) {
+      for (const axis of ['x', 'z']) {
+        const line = document.createElement('a-box');
+        const major = i === 0;
+        line.setAttribute('color', major ? '#5a6272' : '#333a47');
+        line.setAttribute('depth', axis === 'x' ? N * 2 : 0.012);
+        line.setAttribute('width', axis === 'x' ? 0.012 : N * 2);
+        line.setAttribute('height', 0.012);
+        line.setAttribute('position',
+          axis === 'x' ? `${i} 0 0` : `0 0 ${i}`);
+        g.appendChild(line);
+      }
+    }
+  })();
+
+  if (!file) {
+    title.textContent = 'No model specified';
+    stats.innerHTML = '<dt>Try</dt><dd><code>?model=NAME.glb</code></dd>';
+  } else {
+    title.textContent = file;
+    const el = document.getElementById('model');
+    el.setAttribute('gltf-model', 'models/' + file);
+    if (scale !== 1) el.setAttribute('scale', `${scale} ${scale} ${scale}`);
+    if (spin) {
+      document.getElementById('turntable').setAttribute('animation',
+        'property: rotation; to: 0 360 0; loop: true; dur: 18000; easing: linear');
+    }
+
+    el.addEventListener('model-error', (e) => {
+      title.innerHTML = 'Failed to load';
+      row('Path', 'models/' + file, 'err');
+      row('Hint', 'Check the filename and that the file is actually there.', 'err');
+    });
+
+    el.addEventListener('model-loaded', () => {
+      const obj = el.getObject3D('mesh');
+      const box = new THREE.Box3().setFromObject(obj);
+      const s = box.getSize(new THREE.Vector3());
+      const m = (n) => n.toFixed(2) + ' m';
+
+      let tris = 0, meshes = 0, mats = new Set();
+      obj.traverse((n) => {
+        if (n.isMesh) {
+          meshes++;
+          mats.add(n.material && n.material.name);
+          const g = n.geometry;
+          if (g) tris += (g.index ? g.index.count : g.attributes.position.count) / 3;
+        }
+      });
+
+      row('Width (X)',  m(s.x));
+      row('Height (Y)', m(s.y));
+      row('Depth (Z)',  m(s.z));
+      row('Floor at Y', box.min.y.toFixed(3),
+          Math.abs(box.min.y) > 0.05 ? 'warn' : '');
+      row('Meshes', meshes);
+      row('Materials', mats.size);
+      row('Triangles', Math.round(tris).toLocaleString(),
+          tris > 50000 ? 'warn' : '');
+
+      // Frame the camera to whatever we just loaded: a 3/4 view, looking
+      // slightly down at the model's centre. Without this an asset that is
+      // wide and flat (a desk scene) or tiny (a pickup) frames terribly.
+      const maxDim = Math.max(s.x, s.y, s.z);
+      const centre = box.getCenter(new THREE.Vector3());
+      const dist = maxDim * 0.62 + 0.45;
+      const eyeX = centre.x + dist * 0.62;
+      const eyeY = centre.y + maxDim * 0.30;
+      const eyeZ = centre.z + dist;
+
+      document.getElementById('rig')
+        .setAttribute('position', `${eyeX} ${eyeY} ${eyeZ}`);
+
+      // Aim at the model's centre.
+      //
+      // Setting the camera's `rotation` attribute does NOT work here:
+      // look-controls has already initialised and overwrites it every tick
+      // from its own yaw/pitch objects. Drive those directly instead, which
+      // also means a drag continues smoothly from this angle rather than
+      // snapping back to zero on first mouse-down.
+      const lc = document.querySelector('[camera]').components['look-controls'];
+      if (lc) {
+        const dx = eyeX - centre.x, dy = eyeY - centre.y, dz = eyeZ - centre.z;
+        lc.yawObject.rotation.y   = Math.atan2(dx, dz);
+        lc.pitchObject.rotation.x = -Math.atan2(dy, Math.hypot(dx, dz));
+      }
+    });
+  }
+</script>
+</body>
+</html>

@@ -1,0 +1,18 @@
+{
+  "$comment": "Index of every asset in the kit. Schema per CLAUDE.md Phase 2. Models here are original PIZZA.EXE work, not third-party CC0 downloads - see ATTRIBUTION.md.",
+  "models": [
+    {
+      "id": "crt_diorama",
+      "name": "NETDEFENDER PRO 98 workstation diorama",
+      "file": "models/PIZZA_EXE_CRT_diorama.glb",
+      "source_url": "https://github.com/CMDann/aframe-workshop-starter",
+      "license": "Original work - see ATTRIBUTION.md",
+      "tags": ["prop", "scene", "computer", "retro", "desk", "hero"],
+      "dimensions_m": { "x": 3.2, "y": 0.45, "z": 2.2 },
+      "triangles": 4764,
+      "corruption_state": "as_shipped",
+      "notes": "CRT monitor, tower, keyboard, mouse, pizza box and post-it on a desk. The screen carries the NETDEFENDER menu on an emissive map at intensity 20, so it glows without needing a light. Whole-scene asset rather than a single prop."
+    }
+  ],
+  "skyboxes": []
+}
