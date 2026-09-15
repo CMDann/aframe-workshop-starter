@@ -37,7 +37,15 @@ Then open `http://localhost:8000/starter-template/`. Check that:
 - Mouse-drag looks around and WASD moves the camera.
 - The **VR-mode button appears bottom-right.** If it's missing, you're not on a secure context — this is exactly the failure the HTTPS constraint exists to prevent.
 
-If you changed a doc, check that every internal link still resolves.
+If you changed a doc — or edited `starter-template/index.html`, which the slides and landing page link into by line number — run the link checker:
+
+```bash
+python3 tools/check-links.py
+```
+
+It resolves every relative markdown link and verifies that each GitHub line-range link still spans the code it claims to. The second check matters: editing the template silently redirects those links without anything appearing broken.
+
+More detail in [docs/process/contributing-workflow.md](docs/process/contributing-workflow.md).
 
 ## Documentation style
 
