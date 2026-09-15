@@ -40,6 +40,20 @@ The ambient (0.4) plus directional (0.8) pairing is what actually makes geometry
 
 Knock-on change: `assignment.md`'s stretch goal used to read "layer in a second light" — already true in the starter now — so it was rewritten to push on lighting *mood* (killing the ambient, tinting key against fill, adding a practical point light) instead.
 
+### GitHub Pages serves from the repository root
+
+The presentation needed hosting, and serving Pages from the root of `main` does considerably more than host it. It also publishes `starter-template/`, `example-scene/` and `asset-kit/` over **HTTPS** — which is what makes the VR button work, and gives the asset kit stable URLs a student can reference from a Glitch project.
+
+Live at <https://cmdann.github.io/aframe-workshop-starter/>.
+
+The cost is a root `index.html`, which the layout in `CLAUDE.md` doesn't include, plus a `.nojekyll` file so Pages serves everything verbatim instead of running Jekyll over it. Both are deliberate deviations in service of the HTTPS win. Markdown in `docs/` stays markdown and is read on github.com, which renders it properly.
+
+### reveal.js is pinned to 5.1.0, not 6.0.2
+
+The facilitator deck needs speaker notes (presenter view with a timer, for a session timed to the minute) and syntax highlighting (its whole job is showing A-Frame markup).
+
+Verified against cdnjs: **6.0.2 serves core and themes but not plugins** — `plugin/notes/notes.js` and `plugin/highlight/highlight.js` both 404 there. 5.1.0 serves all of them. So the deck pins the older version on purpose, and this is the reason not to "helpfully" bump it.
+
 ### The repo lives on an exFAT volume
 
 The working volume is exFAT, which doesn't preserve permission bits and causes macOS to scatter `._*` AppleDouble files. `.gitignore` covers `._*`, and the repo sets `core.fileMode false`. Worth knowing if a contributor sees spurious mode-change diffs.
@@ -50,11 +64,15 @@ The working volume is exFAT, which doesn't preserve permission bits and causes m
 
 These block "definition of done" and need a human:
 
-### The Glitch quick-start link imports the whole repo
+### The Glitch quick start needs an extra navigation step
 
-The README points at `https://glitch.com/edit/#!/import/github/CMDann/aframe-workshop-starter`, which works but imports the entire repository. Because Glitch serves from the project root, the scene ends up at `/starter-template/` on the preview URL rather than at the root — so the quick start is a few clicks longer than the ideal "fork and it's live."
+Largely defused, not fully closed. The canonical live demo is now the GitHub Pages URL, which serves the scene directly with no navigation:
 
-The better pre-launch move is a purpose-made Glitch project containing only the starter template's contents at root, shared as a remix URL. That needs a Glitch account and can't be created from here. Until it exists, the README documents the extra navigation step honestly rather than overpromising.
+<https://cmdann.github.io/aframe-workshop-starter/starter-template/>
+
+The Glitch path remains the recommended route for *editing*, because participants need a fork they can change. `https://glitch.com/edit/#!/import/github/CMDann/aframe-workshop-starter` imports the whole repository, and since Glitch serves from the project root the scene lands at `/starter-template/` rather than at the root.
+
+A purpose-made Glitch project containing only the template's contents at root, shared as a remix URL, would remove that step. It needs a Glitch account and can't be created from here. The docs describe the extra step honestly in the meantime.
 
 ### README screenshot is a placeholder
 
@@ -66,12 +84,12 @@ Set to `Dann Blair` from the local git config. Confirm this is the right attribu
 
 ---
 
-## Deferred to GitHub issues at publish time
+## Stretch items — now filed as issues
 
-`CLAUDE.md` asks for the stretch items to be filed as issues during Phase 0. The repo had no remote at that point and the GitHub connector is unauthenticated in this environment, so they're parked here. File them as real issues once the repo is published:
+`CLAUDE.md` asked for these to be filed during Phase 0. There was no remote at that point, so they were parked here and have since been filed:
 
-1. **AI-assisted asset generation** as an optional "Delegation" extension for longer workshop formats.
-2. **Multiplayer / shared-scene support** for group builds.
-3. **A branded, skinnable version of the example scene** for institutional demos.
+1. [AI-assisted asset generation as a "Delegation" extension](https://github.com/CMDann/aframe-workshop-starter/issues/1)
+2. [Multiplayer / shared-scene support for group builds](https://github.com/CMDann/aframe-workshop-starter/issues/2)
+3. [A branded / skinnable example scene for institutional demos](https://github.com/CMDann/aframe-workshop-starter/issues/3)
 
 All three are explicitly out of scope for the 2-hour single-participant workshop.

@@ -14,17 +14,25 @@ A ready-to-fork framework for running a **2-hour, hands-on WebXR scene-design wo
 
 ## Quick start
 
-**Try the starter scene right now:**
+**See it running right now —** no install, no sign-up:
+
+| | |
+|---|---|
+| **Live scene** | <https://cmdann.github.io/aframe-workshop-starter/starter-template/> |
+| **Workshop site** | <https://cmdann.github.io/aframe-workshop-starter/> |
+| **Facilitator slides** | <https://cmdann.github.io/aframe-workshop-starter/slides/> |
+
+**To edit your own copy:**
 
 1. Open <https://glitch.com/edit/#!/import/github/CMDann/aframe-workshop-starter> — this imports this repo into a fresh Glitch project.
 2. Hit **Preview**, then navigate to `/starter-template/` on the preview URL.
-3. You have a live, HTTPS-hosted WebXR scene. Edit `starter-template/index.html` and the preview reloads as you type.
+3. Edit `starter-template/index.html` and the preview reloads as you type.
 
-Glitch is the reference target because it gives you **free HTTPS**, and HTTPS (or `localhost`) is what makes the VR-mode button appear at all — it's a WebXR requirement, not an incidental choice.
+Glitch is the reference target for editing because it gives you **free HTTPS**, and HTTPS (or `localhost`) is what makes the VR-mode button appear at all — it's a WebXR requirement, not an incidental choice. GitHub Pages satisfies the same requirement, which is why the links above enter VR too.
 
 **No Glitch?** See [docs/deployment.md](docs/deployment.md) for CodeSandbox, GitHub Pages, and a local-server fallback for venues with restrictive networks.
 
-**Running this workshop?** Start with [docs/facilitator-guide.md](docs/facilitator-guide.md).
+**Running this workshop?** Start with [docs/facilitator-guide.md](docs/facilitator-guide.md), and present from [the slides](https://cmdann.github.io/aframe-workshop-starter/slides/).
 
 ---
 
@@ -46,12 +54,16 @@ The session is structured around four moments, in order, rather than as a featur
 | [starter-template/](starter-template/) | The fork-ready A-Frame scene participants build from. Heavily commented — it doubles as the in-session reference. |
 | [example-scene/](example-scene/) | A finished scene built from the starter template, used as the opening demo. |
 | [asset-kit/](asset-kit/) | Curated CC0 models and skyboxes, with a machine-readable manifest and full license attribution. |
+| [docs/](docs/) | **Documentation index** — start here for anything written down. |
 | [docs/overview.md](docs/overview.md) | What the workshop is, who it's for, and the learning outcomes. |
 | [docs/facilitator-guide.md](docs/facilitator-guide.md) | Run of show with clock times, pre-session checklist, common failure points and fixes. |
 | [docs/assignment.md](docs/assignment.md) | The student-facing task brief, requirements, and asset-sourcing rules. |
 | [docs/student-cheatsheet.md](docs/student-cheatsheet.md) | One-page, print-friendly A-Frame quick reference. |
 | [docs/deployment.md](docs/deployment.md) | Glitch / CodeSandbox / GitHub Pages / local fallback instructions. |
+| [docs/aframe/](docs/aframe/) | A guide to A-Frame from zero — concepts through VR, beyond what the session covers. |
+| [docs/process/](docs/process/) | How this repo was built, its architecture, and the contributing workflow. |
 | [docs/decisions.md](docs/decisions.md) | Judgment calls made while building this, and open items. |
+| [slides/](slides/) | The facilitator deck (reveal.js). |
 
 ## Running this yourself
 

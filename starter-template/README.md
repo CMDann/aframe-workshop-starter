@@ -13,7 +13,13 @@ The scene participants build from. One file — [`index.html`](index.html) — w
 
 ## Getting it running
 
-### Glitch (recommended)
+### Just look at it
+
+It's already live: <https://cmdann.github.io/aframe-workshop-starter/starter-template/>
+
+Served over HTTPS, so the VR button works. Nothing to set up.
+
+### Glitch (recommended for editing)
 
 Import this repo at <https://glitch.com/edit/#!/import/github/CMDann/aframe-workshop-starter>, hit **Preview**, and navigate to `/starter-template/`.
 

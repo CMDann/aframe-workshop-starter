@@ -1,6 +1,6 @@
 # Deployment
 
-> **Provisional.** The full version — CodeSandbox, GitHub Pages, and venue-network troubleshooting — lands in Phase 5. The two paths below are written out because they've been tested and you may need them now.
+> **Partial.** CodeSandbox and venue-network troubleshooting still land in Phase 5. Everything below has been tested and is safe to rely on.
 
 ## Why hosting matters here
 
@@ -8,7 +8,27 @@ WebXR's VR-mode entry point requires a **secure context**: HTTPS, or `localhost`
 
 That's the whole reason this workshop defaults to a hosted editor rather than "just open the file." It's a browser security rule, not a preference.
 
-## Glitch (primary path)
+## GitHub Pages (already live)
+
+This repository publishes itself. Pages serves from the root of `main`, so everything in it is available over HTTPS with no setup at all:
+
+| What | URL |
+|---|---|
+| Workshop site | <https://cmdann.github.io/aframe-workshop-starter/> |
+| Starter scene | <https://cmdann.github.io/aframe-workshop-starter/starter-template/> |
+| Facilitator slides | <https://cmdann.github.io/aframe-workshop-starter/slides/> |
+| Asset kit | `https://cmdann.github.io/aframe-workshop-starter/asset-kit/…` |
+
+Two things this gives you:
+
+- **A demo link that always works**, including the VR button, for showing the workshop to someone before running it.
+- **Assets over HTTPS.** Participants can reference kit models and skyboxes by absolute URL from their own Glitch projects rather than re-uploading them. GitHub Pages sends permissive CORS headers, so cross-origin loading works.
+
+**To publish a finished scene this way**, fork this repo (or push your own), then enable Pages under *Settings → Pages* with source `main` / `/ (root)`. Add an empty `.nojekyll` file at the root so your files are served verbatim.
+
+Pages is for *publishing*, not editing — there's no live preview and each change needs a commit. Use Glitch during the session and Pages to make a scene permanent afterwards.
+
+## Glitch (primary path for editing)
 
 1. Open <https://glitch.com/edit/#!/import/github/CMDann/aframe-workshop-starter>. This imports the repo into a fresh Glitch project.
 2. Click **Preview** → **Preview in a new window**.
