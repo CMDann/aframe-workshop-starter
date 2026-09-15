@@ -37,7 +37,7 @@ A live, shareable link (Glitch or equivalent) to your finished scene. It should 
 If you finish with time to spare:
 
 - Add interactivity — a click or gaze event that changes something in the scene.
-- Layer in a second light for mood/contrast rather than flat, even lighting.
+- Push the lighting for mood. The starter gives you an ambient and a directional light; try dropping the ambient close to zero so the directional does all the work, tinting them against each other (warm key, cool fill), or adding a coloured `point` light as a practical source inside the scene.
 - Add ambient sound.
 
 None of these are required. A complete, intentional basic scene beats an incomplete ambitious one.

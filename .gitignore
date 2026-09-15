@@ -13,3 +13,6 @@
 node_modules/
 *.log
 .env
+
+# Local preview config, not part of the published framework
+.claude/

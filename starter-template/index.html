@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>My WebXR Scene</title>
+
+    <!-- ===================================================================
+         READ ME FIRST  (you don't need to know any of this in advance)
+         ===================================================================
+
+         This one file is your entire 3D scene. There's nothing else to
+         install, build, or compile. You edit this file, save, and the
+         scene reloads.
+
+         The big idea: in A-Frame, a 3D scene is written as HTML tags, and
+         each tag is a THING IN THE ROOM.
+
+             <a-box>     is a box
+             <a-sphere>  is a sphere
+             <a-sky>     is the sky wrapped around everything
+             <a-light>   is a light source
+
+         Every one of those things has ATTRIBUTES that describe it. The
+         four you'll use constantly:
+
+             position="X Y Z"   where it is      (metres)
+             rotation="X Y Z"   which way it's turned (degrees)
+             scale="X Y Z"      how big it is    (1 = normal size)
+             color="#RRGGBB"    what colour it is
+
+         How to read position="0 1 -3":
+             X =  0  -> centred left/right     (+ is right,  - is left)
+             Y =  1  -> one metre off the floor(+ is up,     - is down)
+             Z = -3  -> three metres in FRONT  (- is away from you)
+
+         That last one trips everyone up at first: NEGATIVE Z is forward.
+         You start at position 0 0 0 looking down the negative-Z axis, so
+         anything you want to see goes at a negative Z.
+
+         ===================================================================
+         WHERE TO START EDITING
+         ===================================================================
+         Scroll down to "YOUR OBJECTS". Change a color value, save, and
+         watch the scene update. Then move something. That's the whole
+         loop — everything else is variations on it.
+
+         ===================================================================
+         CONTROLS, once the scene is running
+         ===================================================================
+             Click and drag  -> look around
+             W A S D keys    -> walk around
+             VR button       -> bottom-right, enters VR if you have a headset
+
+         If the VR button is MISSING, the page isn't being served over
+         HTTPS or localhost. That's a browser security rule, not a bug in
+         your scene. See docs/deployment.md.
+    -->
+
+    <!-- This line loads A-Frame itself. Don't change it.
+         The version number is pinned on purpose: it means this scene keeps
+         behaving exactly the same way, even if A-Frame releases an update
+         in the middle of your workshop. -->
+    <script src="https://aframe.io/releases/1.8.0/aframe.min.js"></script>
+  </head>
+
+  <body>
+    <!-- <a-scene> is the container for everything. Every tag below lives
+         inside it. It also quietly does a LOT of work for you: it creates
+         the WebGL renderer, sets up the VR button, and handles the headset
+         connection. You never have to write any of that. -->
+    <a-scene>
+
+      <!-- ===============================================================
+           1. THE SKY
+           ===============================================================
+           <a-sky> is a giant sphere painted on the inside, surrounding
+           your whole scene. It sets the mood more than almost anything
+           else here, so it's a good first thing to change.
+
+           Right now it's a flat colour. Try a few:
+               #ECECEC  pale grey (current)     #0B0C1E  midnight blue
+               #FFD9B3  warm sunset             #1A2B1A  deep forest
+      -->
+      <a-sky color="#ECECEC"></a-sky>
+
+      <!-- Want a real photographic sky instead of a flat colour?
+           Delete the <a-sky> line above and uncomment this one. The image
+           needs to be "equirectangular" — a special wide panorama format.
+           There are some ready to use in the asset kit.
+
+      <a-sky src="../asset-kit/skyboxes/YOUR-SKY-HERE.jpg"></a-sky>
+      -->
+
+
+      <!-- ===============================================================
+           2. THE LIGHT
+           ===============================================================
+           IMPORTANT AND SURPRISING: A-Frame gives every scene some default
+           lighting for free — but the moment you add your own <a-light>,
+           those defaults switch off and YOUR lights are the only ones.
+
+           There are two lights here, and they're doing different jobs.
+           Almost every good-looking scene uses this pairing:
+
+           AMBIENT is soft light coming from everywhere at once, with no
+           particular direction. It's the safety net — it guarantees
+           nothing is hidden in total darkness. On its own it looks FLAT,
+           though: a cube lit only by ambient light looks like a plain
+           hexagon, because every face gets exactly the same light.
+
+           DIRECTIONAL acts like the sun. It comes from one direction, so
+           objects get a bright side and a shadowed side. That's what
+           makes things look solid and three-dimensional.
+
+           Try it: set the directional light's intensity to 0 and reload.
+           Everything goes flat. That's the difference the second light
+           makes, and it's the single biggest lever you have on mood.
+
+           Things worth changing:
+             intensity  - how strong. Ambient 0.2 + directional 1.0 is
+                          dramatic and moody. Ambient 0.8 + directional
+                          0.4 is soft and even, like an overcast day.
+             color      - tints everything. Warm (#FFD9B3) reads as
+                          sunset; cold blue (#8FA9D9) reads as moonlight.
+             position   - (directional only) which direction the "sun"
+                          comes FROM. Try "1 2 -1" to light from behind.
+      -->
+      <a-light type="ambient" color="#FFFFFF" intensity="0.4"></a-light>
+      <a-light type="directional" color="#FFFFFF" intensity="0.8" position="-1 2 1"></a-light>
+
+
+      <!-- ===============================================================
+           3. THE GROUND
+           ===============================================================
+           A plane is a flat rectangle. By default it stands up like a
+           wall, so we rotate it -90 degrees around the X axis to lay it
+           flat as a floor. That's what rotation="-90 0 0" is doing.
+
+           width and height are in metres. 30x30 gives you room to walk
+           around without falling off the edge of the world.
+      -->
+      <a-plane
+        position="0 0 0"
+        rotation="-90 0 0"
+        width="30"
+        height="30"
+        color="#7BC8A4"></a-plane>
+
+
+      <!-- ===============================================================
+           4. YOUR OBJECTS  <- START HERE
+           ===============================================================
+           These three are examples, not requirements. Change them, move
+           them, recolour them, delete them entirely and put your own
+           things in. That's the point.
+      -->
+
+      <!-- A box, one metre in front-left of where you start.
+           Try: change the color. Then change the Y in position to 2 and
+           watch it float. -->
+      <a-box
+        position="-1 0.5 -3"
+        rotation="0 45 0"
+        color="#4CC3D9"></a-box>
+
+      <!-- A sphere, floating a bit higher and further back.
+           radius is how big it is, in metres. -->
+      <a-sphere
+        position="0 1.25 -5"
+        radius="1.25"
+        color="#EF2D5E"></a-sphere>
+
+      <!-- A cylinder, off to the right.
+           This one uses scale instead of its own size attributes —
+           scale="1 2 1" means "normal width, DOUBLE height, normal depth".
+           Scale multiplies whatever size the object already had. -->
+      <a-cylinder
+        position="2 0.75 -3"
+        radius="0.5"
+        height="1.5"
+        scale="1 1 1"
+        color="#FFC65D"></a-cylinder>
+
+      <!-- Ready to add a real 3D model from the asset kit?
+           Uncomment this and point it at one of the .glb files. Models are
+           often a very different size than you expect, so scale is usually
+           the first thing you'll need to fix.
+
+      <a-entity
+        gltf-model="../asset-kit/models/YOUR-MODEL-HERE.glb"
+        position="0 0 -4"
+        rotation="0 180 0"
+        scale="1 1 1"></a-entity>
+      -->
+
+
+      <!-- ===============================================================
+           5. YOU (the camera) — you probably don't need to touch this
+           ===============================================================
+           This is where you stand in the scene, and it's the clearest
+           example of A-Frame doing the hard work on your behalf.
+
+           The rig sits at Y 1.6 — roughly human eye height in metres.
+
+           Attached to the camera are two components you get for free:
+               look-controls  -> drag to look, and full headset head-tracking
+               wasd-controls  -> walk with the keyboard
+
+           Writing either of those yourself would be hundreds of lines of
+           maths. Naming them is enough.
+
+           <a-cursor> is the small ring in the centre of your view. It's
+           what lets you point at and click things by looking at them,
+           which is how you interact when you're wearing a headset and
+           have no mouse.
+      -->
+      <a-entity id="rig" position="0 1.6 0">
+        <a-entity camera look-controls wasd-controls>
+          <a-cursor color="#FFFFFF"></a-cursor>
+        </a-entity>
+      </a-entity>
+
+    </a-scene>
+  </body>
+</html>

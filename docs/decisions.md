@@ -30,6 +30,16 @@ Sourcing constraints found while verifying feasibility:
 - **Poly Pizza's API requires a key**, so its catalog can't be fetched programmatically here. It stays a recommended source for *students* sourcing their own assets, but can't be bulk-pulled into the kit.
 - **Khronos glTF-Sample-Assets** is the reliable model source: 150 models, each with its own license file, downloadable directly over HTTPS with no key.
 
+### The starter template ships two lights, not one
+
+`CLAUDE.md` Phase 1 asks for "one `<a-light>` (type="ambient" or "directional" — pick one and comment why)". The template ships both, and the deviation is deliberate.
+
+Tested visually during the build. A-Frame disables its default lighting as soon as a scene declares any `<a-light>`, so a single light really is the only light. Ambient-only renders every face of every object identically: the example cube reads as a flat hexagon and the cylinder as a flat rectangle, with no cue that anything is solid. Directional-only has the opposite failure — unlit faces go to near-black.
+
+The ambient (0.4) plus directional (0.8) pairing is what actually makes geometry legible, and it costs one extra line. Since the opening hook depends on the scene looking good on a projector, and the Phase 1 acceptance criterion is that a participant "can change a color or position value and understand why the scene changed," flat shading worked directly against both.
+
+Knock-on change: `assignment.md`'s stretch goal used to read "layer in a second light" — already true in the starter now — so it was rewritten to push on lighting *mood* (killing the ambient, tinting key against fill, adding a practical point light) instead.
+
 ### The repo lives on an exFAT volume
 
 The working volume is exFAT, which doesn't preserve permission bits and causes macOS to scatter `._*` AppleDouble files. `.gitignore` covers `._*`, and the repo sets `core.fileMode false`. Worth knowing if a contributor sees spurious mode-change diffs.
