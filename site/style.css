@@ -1,0 +1,202 @@
+/* ==========================================================================
+   Shared design tokens + landing page styles.
+
+   Hand-written, no framework, no build step — same constraint the scenes
+   run under. The deck (site/deck.css) pulls the same tokens so the
+   presentation and the site read as one system.
+   ========================================================================== */
+
+:root {
+  --bg:          #f7f6f3;
+  --surface:     #ffffff;
+  --surface-alt: #efede8;
+  --text:        #1b1d21;
+  --muted:       #5c6069;
+  --border:      #dedbd4;
+  --accent:      #3d5afe;
+  --accent-soft: #e8ebff;
+  --warm:        #d97706;
+  --code-bg:     #f2f0ec;
+
+  --maxw: 68rem;
+  --radius: 10px;
+  --font: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  --mono: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg:          #0e1014;
+    --surface:     #171a20;
+    --surface-alt: #1e222a;
+    --text:        #e8e9ec;
+    --muted:       #9aa0ab;
+    --border:      #2a2f39;
+    --accent:      #8b9dff;
+    --accent-soft: #1c2340;
+    --warm:        #fbbf24;
+    --code-bg:     #12151a;
+  }
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font);
+  font-size: 17px;
+  line-height: 1.65;
+  -webkit-font-smoothing: antialiased;
+}
+
+.wrap { max-width: var(--maxw); margin: 0 auto; padding: 0 1.25rem; }
+
+a { color: var(--accent); text-decoration-thickness: 1px; text-underline-offset: 2px; }
+a:hover { text-decoration-thickness: 2px; }
+
+code {
+  font-family: var(--mono);
+  font-size: 0.875em;
+  background: var(--code-bg);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  padding: 0.1em 0.35em;
+}
+
+pre {
+  background: var(--code-bg);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 1rem 1.1rem;
+  overflow-x: auto;           /* wide code scrolls itself, never the page */
+  font-size: 0.9rem;
+  line-height: 1.55;
+}
+pre code { background: none; border: 0; padding: 0; font-size: inherit; }
+
+h1, h2, h3 { line-height: 1.2; letter-spacing: -0.02em; }
+
+/* ---------- hero ---------- */
+
+.hero {
+  background: linear-gradient(170deg, var(--surface-alt), var(--bg));
+  border-bottom: 1px solid var(--border);
+  padding: 4.5rem 0 3.5rem;
+}
+.eyebrow {
+  font-size: 0.78rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--muted);
+  font-weight: 600;
+  margin: 0 0 0.75rem;
+}
+.hero h1 { font-size: clamp(2rem, 5.5vw, 3.4rem); margin: 0 0 1rem; }
+.lede { font-size: clamp(1.05rem, 2.2vw, 1.3rem); color: var(--muted); max-width: 46rem; margin: 0 0 2rem; }
+
+.btn-row { display: flex; flex-wrap: wrap; gap: 0.7rem; }
+.btn {
+  display: inline-block;
+  padding: 0.7rem 1.25rem;
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  background: var(--surface);
+  color: var(--text);
+  font-weight: 600;
+  font-size: 0.95rem;
+  text-decoration: none;
+}
+.btn:hover { border-color: var(--accent); }
+.btn-primary { background: var(--accent); border-color: var(--accent); color: #fff; }
+@media (prefers-color-scheme: dark) { .btn-primary { color: #0e1014; } }
+.btn-primary:hover { filter: brightness(1.08); }
+
+/* ---------- sections ---------- */
+
+section { padding: 3.5rem 0; border-bottom: 1px solid var(--border); }
+section > .wrap > h2 { font-size: clamp(1.5rem, 3.2vw, 2rem); margin: 0 0 0.5rem; }
+.section-sub { color: var(--muted); margin: 0 0 2rem; max-width: 46rem; }
+
+/* ---------- live embed ---------- */
+
+.embed {
+  position: relative;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  overflow: hidden;
+  background: var(--surface-alt);
+  aspect-ratio: 16 / 9;
+}
+.embed iframe { width: 100%; height: 100%; border: 0; display: block; }
+.embed-note { font-size: 0.85rem; color: var(--muted); margin-top: 0.7rem; }
+
+/* ---------- cards ---------- */
+
+.grid { display: grid; gap: 1rem; grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr)); }
+.card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 1.25rem 1.35rem;
+}
+.card h3 { margin: 0 0 0.4rem; font-size: 1.05rem; }
+.card p { margin: 0; color: var(--muted); font-size: 0.93rem; }
+.card .d-letter {
+  display: inline-grid;
+  place-items: center;
+  width: 2rem; height: 2rem;
+  border-radius: 6px;
+  background: var(--accent-soft);
+  color: var(--accent);
+  font-weight: 700;
+  margin-bottom: 0.7rem;
+}
+
+/* ---------- steps ---------- */
+
+ol.steps { padding-left: 1.2rem; }
+ol.steps li { margin-bottom: 0.6rem; }
+
+/* ---------- source links table ---------- */
+
+.srclist { display: grid; gap: 0.5rem; }
+.srclist a {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.25rem 0.75rem;
+  align-items: baseline;
+  padding: 0.75rem 1rem;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  text-decoration: none;
+  color: var(--text);
+}
+.srclist a:hover { border-color: var(--accent); }
+.srclist .path { font-family: var(--mono); font-size: 0.85rem; color: var(--accent); }
+.srclist .what { color: var(--muted); font-size: 0.9rem; }
+
+/* ---------- callout ---------- */
+
+.callout {
+  border-left: 3px solid var(--warm);
+  background: var(--surface);
+  border-radius: 0 var(--radius) var(--radius) 0;
+  padding: 1rem 1.25rem;
+  margin: 1.5rem 0 0;
+}
+.callout p { margin: 0; font-size: 0.95rem; }
+.callout strong { color: var(--warm); }
+
+/* ---------- footer ---------- */
+
+footer { padding: 2.5rem 0 3.5rem; color: var(--muted); font-size: 0.9rem; }
+footer a { color: var(--muted); }
+
+@media (max-width: 40rem) {
+  body { font-size: 16px; }
+  .hero { padding: 3rem 0 2.5rem; }
+  section { padding: 2.5rem 0; }
+}

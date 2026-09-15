@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Spatial Storytelling — Designing Your First WebXR Scene</title>
+<meta name="description" content="A 2-hour, hands-on WebXR scene-design workshop using A-Frame. No install, no prior coding experience, and everyone leaves with a shareable 3D scene.">
+<link rel="stylesheet" href="site/style.css">
+</head>
+<body>
+
+<header class="hero">
+  <div class="wrap">
+    <p class="eyebrow">A 2-hour hands-on workshop</p>
+    <h1>Spatial Storytelling</h1>
+    <p class="lede">
+      Design and publish your own interactive 3D scene using WebXR — no prior coding
+      or 3D experience required. Nothing to install. You'll leave with a real,
+      shareable scene you built yourself, viewable in any browser, or in VR if
+      there's a headset on hand.
+    </p>
+    <div class="btn-row">
+      <a class="btn btn-primary" href="starter-template/">Open the live scene</a>
+      <a class="btn" href="slides/">Facilitator slides</a>
+      <a class="btn" href="https://github.com/CMDann/aframe-workshop-starter">View on GitHub</a>
+    </div>
+  </div>
+</header>
+
+<section id="demo">
+  <div class="wrap">
+    <h2>This is what you're editing</h2>
+    <p class="section-sub">
+      A live A-Frame scene, running right here in the page. Click and drag to look
+      around; use W&nbsp;A&nbsp;S&nbsp;D to walk. It's one HTML file you can read top to bottom.
+    </p>
+    <div class="embed">
+      <!-- xr-spatial-tracking is required or VR entry from inside the frame fails -->
+      <iframe src="starter-template/"
+              title="Live A-Frame starter scene"
+              loading="lazy"
+              allow="xr-spatial-tracking; fullscreen; gyroscope; accelerometer"></iframe>
+    </div>
+    <p class="embed-note">
+      Embedded here for convenience — <a href="starter-template/">open it full-screen</a>
+      to get the VR button.
+    </p>
+  </div>
+</section>
+
+<section id="start">
+  <div class="wrap">
+    <h2>Quick start</h2>
+    <p class="section-sub">Pick whichever works on the network you're on.</p>
+    <div class="grid">
+      <div class="card">
+        <h3>Glitch — recommended</h3>
+        <p>
+          <a href="https://glitch.com/edit/#!/import/github/CMDann/aframe-workshop-starter">Import the repo</a>,
+          hit <strong>Preview</strong>, then go to <code>/starter-template/</code>. You get a live
+          HTTPS URL that reloads as you type, and it stays yours after the session.
+        </p>
+      </div>
+      <div class="card">
+        <h3>Locally</h3>
+        <p>
+          Clone the repo, then run a server from its root and open
+          <code>localhost:8000/starter-template/</code>:
+        </p>
+        <pre><code>python3 -m http.server 8000</code></pre>
+      </div>
+    </div>
+    <div class="callout">
+      <p>
+        <strong>Why not just double-click the file?</strong>
+        You can, and the scene will render — but the VR button won't appear and models
+        may fail to load. WebXR only enters VR from a secure context: HTTPS, or
+        <code>localhost</code>. That's a browser rule, not something a scene can opt out of.
+      </p>
+    </div>
+  </div>
+</section>
+
+<section id="four-ds">
+  <div class="wrap">
+    <h2>The 4 Ds</h2>
+    <p class="section-sub">
+      The session is built around four moments, in order — not a feature-by-feature
+      software tutorial.
+    </p>
+    <div class="grid">
+      <div class="card">
+        <span class="d-letter">D</span>
+        <h3>Direction</h3>
+        <p>Pick a mood, theme, or concept before writing anything. Intent comes first.</p>
+      </div>
+      <div class="card">
+        <span class="d-letter">D</span>
+        <h3>Description</h3>
+        <p>
+          Write the tags that describe your scene. In A-Frame this is unusually literal:
+          describing the scene <em>is</em> the code.
+        </p>
+      </div>
+      <div class="card">
+        <span class="d-letter">D</span>
+        <h3>Discernment</h3>
+        <p>
+          Choose assets deliberately. The skill is judgment about what serves the mood,
+          not how much you can find.
+        </p>
+      </div>
+      <div class="card">
+        <span class="d-letter">D</span>
+        <h3>Delegation</h3>
+        <p>
+          A-Frame's defaults handle the camera, controls and lighting maths, so your
+          hour goes on composition instead.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="build">
+  <div class="wrap">
+    <h2>What you'll build</h2>
+    <p class="section-sub">The floor, not the ceiling. Finish early and there are stretch goals.</p>
+    <ol class="steps">
+      <li>An environment — at least one sky or skybox.</li>
+      <li>At least one light, set deliberately rather than left wherever it landed.</li>
+      <li>Two or three objects placed with intention — position, scale, rotation and colour should each reflect a decision.</li>
+      <li>A scene that loads and enters VR mode from your shared link.</li>
+    </ol>
+    <p>
+      Full brief, asset rules and stretch goals:
+      <a href="https://github.com/CMDann/aframe-workshop-starter/blob/main/docs/assignment.md">the assignment</a>.
+    </p>
+  </div>
+</section>
+
+<section id="source">
+  <div class="wrap">
+    <h2>Read the source</h2>
+    <p class="section-sub">
+      The starter template is commented for someone who has never seen A-Frame. These
+      links drop you straight onto the relevant lines.
+    </p>
+    <div class="srclist">
+      <a href="https://github.com/CMDann/aframe-workshop-starter/blob/main/starter-template/index.html">
+        <span class="path">starter-template/index.html</span>
+        <span class="what">the whole scene, top to bottom</span>
+      </a>
+      <a href="https://github.com/CMDann/aframe-workshop-starter/blob/main/starter-template/index.html#L63">
+        <span class="path">#L63</span>
+        <span class="what">loading A-Frame from a CDN — the only dependency</span>
+      </a>
+      <a href="https://github.com/CMDann/aframe-workshop-starter/blob/main/starter-template/index.html#L73-L92">
+        <span class="path">#L73-L92</span>
+        <span class="what">the sky, and swapping it for a real panorama</span>
+      </a>
+      <a href="https://github.com/CMDann/aframe-workshop-starter/blob/main/starter-template/index.html#L128-L129">
+        <span class="path">#L128-L129</span>
+        <span class="what">the two lights, and why there are two</span>
+      </a>
+      <a href="https://github.com/CMDann/aframe-workshop-starter/blob/main/starter-template/index.html#L150-L195">
+        <span class="path">#L150-L195</span>
+        <span class="what">your objects — where you start editing</span>
+      </a>
+      <a href="https://github.com/CMDann/aframe-workshop-starter/blob/main/starter-template/index.html#L197-L221">
+        <span class="path">#L197-L221</span>
+        <span class="what">the camera rig, cursor, and what A-Frame does for you</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<section id="docs">
+  <div class="wrap">
+    <h2>Documentation</h2>
+    <p class="section-sub">Everything needed to take the scene further, or to run the session yourself.</p>
+    <div class="grid">
+      <div class="card">
+        <h3>Learn A-Frame</h3>
+        <p>
+          A guide from zero: <a href="https://github.com/CMDann/aframe-workshop-starter/blob/main/docs/aframe/">concepts, primitives,
+          transforms, lighting, models and interactivity</a>.
+        </p>
+      </div>
+      <div class="card">
+        <h3>Cheat sheet</h3>
+        <p>
+          <a href="https://github.com/CMDann/aframe-workshop-starter/blob/main/docs/student-cheatsheet.md">One page</a>,
+          print-friendly, covering exactly the syntax this workshop uses.
+        </p>
+      </div>
+      <div class="card">
+        <h3>Run the workshop</h3>
+        <p>
+          <a href="https://github.com/CMDann/aframe-workshop-starter/blob/main/docs/facilitator-guide.md">Run of show</a>
+          with clock times, a pre-session checklist, and fixes for what usually goes wrong.
+        </p>
+      </div>
+      <div class="card">
+        <h3>How this was built</h3>
+        <p>
+          <a href="https://github.com/CMDann/aframe-workshop-starter/blob/main/docs/process/">The process</a> —
+          build phases, architecture, and the decisions behind the constraints.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <p>
+      MIT licensed. Fork it, swap the asset kit, adapt the timings — it's built to be
+      run by any facilitator.
+      <br>
+      <a href="https://github.com/CMDann/aframe-workshop-starter">github.com/CMDann/aframe-workshop-starter</a>
+    </p>
+  </div>
+</footer>
+
+</body>
+</html>
