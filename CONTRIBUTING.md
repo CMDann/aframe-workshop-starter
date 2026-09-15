@@ -14,7 +14,11 @@ These aren't style preferences — the workshop stops working without them. Plea
 
 ## Contributing to the asset kit
 
-Assets are the area most likely to cause legal problems, so the bar is strict:
+Assets are the area most likely to cause legal problems, so the bar is strict.
+
+**First-party assets.** The PIZZA.EXE models, concept art and world bible are original works under [`asset-kit/LICENSE-ASSETS.md`](asset-kit/LICENSE-ASSETS.md) — free for workshop use, all other rights reserved. They are not CC0 and must not be relicensed, redistributed standalone, or used in other projects.
+
+**Third-party assets** you contribute must clear this bar:
 
 - **CC0 preferred. CC-BY acceptable** only if the required credit text is captured verbatim.
 - **Never add an asset whose license is unclear or unverifiable.** If you can't point at the license, document it as a pending decision in `docs/decisions.md` instead of guessing.

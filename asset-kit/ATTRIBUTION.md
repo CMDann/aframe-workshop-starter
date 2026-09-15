@@ -8,9 +8,9 @@ These are **original PIZZA.EXE assets**, not third-party downloads. They're mode
 
 | ID | Asset | File | Author | Licence |
 |---|---|---|---|---|
-| `crt_diorama` | NETDEFENDER PRO 98 workstation diorama | `models/PIZZA_EXE_CRT_diorama.glb` | Dann Blair | Original work — see note below |
+| `crt_diorama` | NETDEFENDER PRO 98 workstation diorama | `models/PIZZA_EXE_CRT_diorama.glb` | Dann Blair | © 2026 Dann Blair — [workshop use](LICENSE-ASSETS.md) |
 
-> **Licence still to confirm.** The repository's [LICENSE](../LICENSE) puts code and documentation under MIT and explicitly holds assets separate. PIZZA.EXE is original IP, so the terms for these models are the author's to set — whether that's MIT alongside the rest of the repo, a permissive workshop-use grant, or all rights reserved. Until that's decided, treat them as **© 2026 Dann Blair, all rights reserved**.
+> **© 2026 Dann Blair. All rights reserved.** Free to use in scenes you build and publish as part of a workshop; not for redistribution, other products, or derivative models. Full terms: **[LICENSE-ASSETS.md](LICENSE-ASSETS.md)**.
 
 ## Third-party assets
 

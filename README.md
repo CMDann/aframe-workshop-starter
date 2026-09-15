@@ -71,4 +71,6 @@ See [CONTRIBUTING.md](CONTRIBUTING.md). The short version: no build step, no npm
 
 ## License
 
-[MIT](LICENSE) for the code and documentation. Third-party assets in `asset-kit/` are licensed separately by their creators — see [asset-kit/ATTRIBUTION.md](asset-kit/ATTRIBUTION.md).
+[MIT](LICENSE) for the framework code and documentation — fork it, adapt it, run it commercially.
+
+**The assets are separate.** The PIZZA.EXE models, concept art and world bible in `asset-kit/` are © 2026 Dann Blair, all rights reserved, and licensed for **workshop use only**: build and publish whatever you like with them in a workshop scene, but don't redistribute them standalone or ship them in other products. Full terms in [asset-kit/LICENSE-ASSETS.md](asset-kit/LICENSE-ASSETS.md).

@@ -23,6 +23,13 @@ SOFTWARE.
 ---
 
 The MIT license above covers the code and documentation in this repository.
-Third-party assets in asset-kit/ are licensed separately by their original
-creators -- see asset-kit/ATTRIBUTION.md for the source and license of every
-bundled asset.
+
+Assets in asset-kit/ are licensed SEPARATELY and are NOT covered by the MIT
+license above:
+
+  * Original PIZZA.EXE assets (models, textures, concept art, renders, and the
+    world bible) are (c) 2026 Dann Blair, all rights reserved, and are licensed
+    for workshop use only. See asset-kit/LICENSE-ASSETS.md.
+
+  * Any third-party assets are licensed by their original creators. See
+    asset-kit/ATTRIBUTION.md for the source and license of every bundled asset.

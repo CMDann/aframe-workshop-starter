@@ -54,6 +54,19 @@ The facilitator deck needs speaker notes (presenter view with a timer, for a ses
 
 Verified against cdnjs: **6.0.2 serves core and themes but not plugins** — `plugin/notes/notes.js` and `plugin/highlight/highlight.js` both 404 there. 5.1.0 serves all of them. So the deck pins the older version on purpose, and this is the reason not to "helpfully" bump it.
 
+### Kit assets are original IP under a workshop-use licence, not CC0
+
+The asset kit was originally specced as curated third-party CC0 downloads. It became original PIZZA.EXE work instead — simpler licensing, and a coherent visual identity rather than a bag of unrelated props.
+
+The terms are **© 2026 Dann Blair, all rights reserved, licensed for workshop use only** ([asset-kit/LICENSE-ASSETS.md](../asset-kit/LICENSE-ASSETS.md)). Use them in a workshop scene and publish it anywhere; don't redistribute them standalone or ship them in other products.
+
+Two constraints shaped the wording, because a literal "no reproduction" would have broken the workshop:
+
+1. **Participants must publish.** `assignment.md` makes a live shareable link the deliverable. A scene containing a kit model reproduces that model the moment it goes online, so the licence has to permit exactly that.
+2. **Public GitHub repos can be forked by anyone.** GitHub's Terms of Service grant that right for every public repository, and it overrides repo-level licence text for as long as the repo is public. Going private is the only way to prevent copying. The licence still governs what someone may lawfully *do* with a fork, but it cannot prevent the fork.
+
+Knock-on changes: `CONTRIBUTING.md`'s "CC0 preferred, CC-BY acceptable" rule now applies only to *third-party* contributions and names the first-party assets separately; the root `LICENSE` carves assets out of MIT explicitly; `asset-kit/README.md` and `ATTRIBUTION.md` were rewritten, having previously described a third-party CC0 kit.
+
 ### The repo lives on an exFAT volume
 
 The working volume is exFAT, which doesn't preserve permission bits and causes macOS to scatter `._*` AppleDouble files. `.gitignore` covers `._*`, and the repo sets `core.fileMode false`. Worth knowing if a contributor sees spurious mode-change diffs.
